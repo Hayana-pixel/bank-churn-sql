@@ -1,35 +1,38 @@
 # Bank Customer Churn Analysis & Risk Analytics (SQL + Power BI)
 
-Bank Customer Churn Analysis (SQL + Power BI)
+## About the Project
+I have a background in banking, so I chose a real business problem: **why do customers leave, which segments are at risk, and how do activity, age and balances affect their decision?**
+I built a normalized PostgreSQL data model, wrote SQL queries for the analysis, and created a 3-page Power BI dashboard for decision-making.
 
+**Dataset:** 10,000 bank customers (France, Germany, Spain).
 
-About the Project
+## Key Insights
+- **Overall churn rate is 20.37%** (2,037 of 10,000 customers left).
+- **Inactive customers churn almost 2x more than active ones:** 26.85% vs 14.27%.
+- **Age is the strongest risk factor.** Churn peaks in the **46–60 age group** (57.3% for women, 45.0% for men), while customers aged 18–29 are the most loyal (9.9% / 5.6%).
+- **Women churn more than men in every age group.**
+- **Balance at risk:** inactive customers hold 374M of the bank's 765M total balance (about 49%).
+- France and Germany each hold about 300M+ in balances, Spain about 153M.
 
-This project is about analyzing bank customer churn. Since I have background in banking, I wanted to work on a real business problem to find out why customers leave, which segments are at risk, and how account balances or product usage affect their decisions.
-I built the data model, wrote clean SQL queries to get deep insights, and then created a dashboard in Power BI to make the data easy to understand for decision-making.
+## Business Recommendations
+1. Launch a **reactivation campaign** for inactive customers, the group with the highest churn.
+2. Build a **retention offer for customers aged 46–60**, especially women.
+3. Prioritize inactive customers with high balances, as they carry the largest financial risk.
 
-Tech Stack & Skills
+## Dashboard
+![Executive Summary](executive_summary.png)
+![Demographics](demographics.png)
+![Financials](financials.png)
 
-• Database: PostgreSQL
-• SQL Skills: Window Functions (RANK()), multi-table JOINs, CASE WHEN logic, aggregations, data normalization.
-• Power BI: Data modeling, DAX measures (like Churn Rate), data transformation, salary profiling, and age group buckets.
+## Tech Stack & Skills
+- **Database:** PostgreSQL
+- **SQL:** multi-table JOINs, CASE WHEN, aggregations, subqueries, Window Functions (RANK, AVG OVER PARTITION BY), data normalization
+- **Power BI:** data modeling, DAX measures (Churn Rate), age-group buckets, slicers and page navigation
 
-Data Model & Structure
+## Data Model
+Normalized into connected tables: `customers`, `bank_accounts`, `geography` (loaded from the raw `churn_modelling` table).
 
-The database is normalized and split into four connected tables to keep things clean and structured:
-• customers — Basic customer details.
-• bank_accounts — Account numbers, balances, and how many products they use.
-• geography — Location info.
-• customer_statuses — Churn indicator (exited) and active membership status.
-
-What the Dashboard Shows
-
-1. High-Risk Age Groups: Seeing which age brackets are most likely to drop their accounts.
-2. Salary & Balance Breakdown: Checking if we are losing VIP high-income clients or standard retail accounts.
-3. Product Impact: Analyzing if customers with more products or active memberships stick around longer.
-
-How to Check My Work
-https://gitlab.com/galstyan.nhayana/bank-churn-sql
-
-• Open the schema.sql and queries.sql files to review the database structure and analysis logic.
+## Files
+- `Bank_churn.sql`: schema, data loading and 11 analysis queries
+- `PortFolio_Bank_Customer_Analytics.pbix`: Power BI dashboard (open in Power BI Desktop)
 • Download and open the .pbix file in Power BI Desktop to interact with the dashboard.
